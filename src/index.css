@@ -20,3 +20,12 @@ body {
 .card:hover {
   cursor: pointer;
 }
+
+.tripTitle {
+  text-align: right;
+  margin: 30px, 20px;
+}
+
+ul {
+  list-style-type: none;
+}
