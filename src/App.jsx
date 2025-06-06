@@ -1,7 +1,7 @@
 const App = () => {
   return (
-    <div>
-
+    <div className="text-danger">
+      Hello SST
     </div>
   )
 }
