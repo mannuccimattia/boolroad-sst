@@ -1,6 +1,6 @@
 const viaggi = [
   {
-    id: "V001",
+    id: 1,
     nome: "Esplorazione del Gran Paradiso",
     data_partenza: "2025-07-15",
     data_arrivo: "2025-07-21",
@@ -11,7 +11,7 @@ const viaggi = [
     partecipanti: 18
   },
   {
-    id: "V002",
+    id: 2,
     nome: "Tour Culturale in Toscana",
     data_partenza: "2025-08-03",
     data_arrivo: "2025-08-08",
@@ -22,7 +22,7 @@ const viaggi = [
     partecipanti: 20
   },
   {
-    id: "V003",
+    id: 3,
     nome: "Trekking nelle Dolomiti",
     data_partenza: "2025-06-22",
     data_arrivo: "2025-06-28",
@@ -33,7 +33,7 @@ const viaggi = [
     partecipanti: 17
   },
   {
-    id: "V004",
+    id: 4,
     nome: "Alla scoperta di Roma Antica",
     data_partenza: "2025-09-10",
     data_arrivo: "2025-09-13",
@@ -44,7 +44,7 @@ const viaggi = [
     partecipanti: 19
   },
   {
-    id: "V005",
+    id: 5,
     nome: "Weekend Selvaggio in Maremma",
     data_partenza: "2025-06-06",
     data_arrivo: "2025-06-08",

@@ -5,7 +5,7 @@ const Header = () => {
         <div className="navbar-brand text-white" to="/">
           <div className="d-flex align-items-center">
             <img src="./logo.png" alt="logo" id="header-logo" className="img-fluid" />
-            <div>BoolRoad</div>
+            <div className="ms-2 fs-5">BoolRoad</div>
           </div>
         </div>
       </div>
