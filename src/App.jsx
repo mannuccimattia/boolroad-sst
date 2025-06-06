@@ -1,8 +1,12 @@
 const App = () => {
   return (
-    <div className="text-danger">
-      Hello SST
-    </div>
+    <>
+      <header>LOGO BoolRoad</header>
+
+      <main>
+        main
+      </main>
+    </>
   )
 }
 
