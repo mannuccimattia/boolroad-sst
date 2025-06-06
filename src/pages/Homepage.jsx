@@ -5,7 +5,7 @@ const viaggi = [
     data_partenza: "2025-07-15",
     data_arrivo: "2025-07-21",
     tipologia: "Avventure wild",
-    luogo: "Parco Nazionale del Gran Paradiso, Valle d'Aosta",
+    luogo: "Valle d'Aosta",
     coordinatore: "Luca Moretti",
     accompagnatori: ["Giulia Ferri", "Marco Neri"],
     partecipanti: 18
@@ -61,7 +61,7 @@ const Homepage = () => {
   return (
     <div className="row mt-2 px-3 gy-3">
       <div className="col-12 text-end">
-        <h1>Gite in corso</h1>
+        <h1 className="fw-semibold text-white">Gite in corso</h1>
       </div>
       {viaggi.map(elem => (
         <div className="col-12">
@@ -69,7 +69,10 @@ const Homepage = () => {
             <div className="card-body">
               <h3 className="card-title">{elem.nome}</h3>
               <h6 className="card-title fw-semibold">{elem.luogo}</h6>
-              <div className="card-text">{`Dal: ${elem.data_partenza} Al: ${elem.data_arrivo}`}</div>
+              <div className="card-text">
+                <i class="fa-regular fa-calendar me-1"></i>{elem.data_partenza}
+                <i class="fa-regular fa-calendar ms-5 me-1"></i>{elem.data_arrivo}
+              </div>
             </div>
           </div>
         </div>
