@@ -1,11 +1,21 @@
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import DefaultLayout from "./layouts/DefaultLayout";
+import Homepage from "./pages/Homepage";
+
 const App = () => {
   return (
     <>
-      <header>LOGO BoolRoad</header>
+      <BrowserRouter>
 
-      <main>
-        main
-      </main>
+        <Routes>
+
+          <Route element={<DefaultLayout />}>
+            <Route index element={<Homepage />} />
+          </Route>
+
+        </Routes>
+
+      </BrowserRouter>
     </>
   )
 }
