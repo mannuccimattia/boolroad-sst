@@ -1,5 +1,3 @@
-import React from 'react'
-
 const AddPartecipante = () => {
     return (
         <div className="row mt-2 px-3 gy-3">
@@ -33,7 +31,7 @@ const AddPartecipante = () => {
                 <input type="email" className="form-control border-0 shadow py-2 mb-4" placeholder='Inserisci la mail' required />
 
 
-                <button type='submit' className="btn btn-primary">Aggiungi partecipante</button>
+                <button type='submit' className="btn bg-main text-white">Aggiungi partecipante</button>
             </form>
 
         </div>

@@ -1,9 +1,11 @@
 const AddViaggio = () => {
+
+
     return (
         <div className="row mt-2 px-3 gy-3">
             <h3 className="fw-bold mb-4">Aggiungi viaggio</h3>
 
-            <form>
+            <form className="mb-3">
                 <label className="form-label">
                     Titolo del viaggio
                 </label>
@@ -39,7 +41,7 @@ const AddViaggio = () => {
                 </label>
                 <input type="text" className="form-control border-0 shadow py-2 mb-4" placeholder="Inserisci il nome dell'accompagnatore" required />
 
-                <button type='submit' className="btn btn-primary">Aggiungi viaggio</button>
+                <button type='submit' className="btn bg-main text-white">Aggiungi viaggio</button>
             </form>
         </div>
     )
