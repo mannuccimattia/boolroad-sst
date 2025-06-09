@@ -2,6 +2,10 @@ body {
   font-family: 'Outfit' !important;
 }
 
+main {
+  max-width: 998px !important;
+}
+
 .bg-main {
   background-color: #001632 !important;
 }
