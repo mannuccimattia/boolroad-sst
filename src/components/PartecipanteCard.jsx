@@ -22,7 +22,7 @@ const PartecipanteCard = ({ partecipante }) => {
                     aria-labelledby={`heading-${id}`}
                 >
                     <div className="info accordion-body">
-                        <ul>
+                        <ul className="ps-0">
                             <li>Codice Fiscale: {codice_fiscale}</li>
                             <li>Telefono: {telefono}</li>
                             <li>Email: {email}</li>

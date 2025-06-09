@@ -1,11 +1,11 @@
 import { useContext } from "react"
-import tripContext from "../contexts/TripContext"
+import TripContext from "../contexts/TripContext"
 import TripCard from "../components/TripCard"
 
 
 const Homepage = () => {
 
-  const { viaggi } = useContext(tripContext)
+  const { viaggi } = useContext(TripContext)
 
 
   return (
