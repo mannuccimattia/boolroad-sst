@@ -25,7 +25,6 @@ Ha bisogno di un’applicazione che permetta alla parte amministrativa di gestir
 - Codice fiscale
 - Email
 - Numero di telefono
-- Numero di emergenza
 
 
 ### Dati Viaggi
@@ -36,7 +35,6 @@ Ha bisogno di un’applicazione che permetta alla parte amministrativa di gestir
 - Coordinatore
 - Accompagnatori
 - Partecipanti *(15-20 circa che aumenteranno)*
-- ID
 
 
 ### Usabilità
