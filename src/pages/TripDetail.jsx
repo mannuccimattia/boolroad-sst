@@ -42,37 +42,60 @@ const TripDetail = () => {
 
     return (
         <>
-            <div className="row gy-4 my-3">
+            <div className="row mt-2 px-3 gy-3">
                 <div className="col-12">
-                    <h4 className='tripTitle'>{`Partecipanti alla gita a ${trip.nome}`}</h4>
-                    <div className="form-group d-flex">
+                    <h3 className='fw-bold'>
+                        <div>Partecipanti alla gita</div>
+                        <div className='fw-semibold'>
+                            "{trip.nome}":
+                        </div>
+                    </h3>
+                    <div className='text-secondary'>
+                        <span>
+                            Dal:
+                            <em> {trip.data_partenza}</em>
+                        </span>
+                        <span className='ms-3'>
+                            Al:
+                            <em> {trip.data_arrivo}</em>
+                        </span>
+                    </div>
+                    <div className="form-group mt-3">
                         <input
                             type="text"
-                            className="form-control border border-2 border-primary rounded-0 rounded-start"
+                            className="form-control border border-1 border-main rounded"
                             placeholder="Cerca partecipante..."
                             value={searchInput}
                             onChange={handleChange}
                         />
-                        <Link to={`/`}>
-                            <button
-                                className="btn btn-primary rounded-0 rounded-end"
-                                type="button"
-                            >Torna alla lista gite
-                            </button>
-                        </Link >
+                        <div className="wrapper mt-4 d-flex justify-content-between align-items-center
+                        ">
+                            <span className='me-2 text-secondary'>Oppure</span>
+
+                            <Link to={`/`}>
+                                <button
+                                    className="btn btn-primary
+                                bg-main rounded"
+                                    type="button"
+                                >Torna alla lista gite
+                                </button>
+                            </Link >
+                        </div>
                     </div>
                 </div>
             </div>
             <hr />
-            {partecipantiFiltrati && partecipantiFiltrati.map((partecipante) => {
-                return (
-                    <PartecipanteCard
-                        key={`person-${partecipante.id}`}
-                        partecipante={partecipante}
-                    />
-                )
-            })
-            }
+            <div id="accordion" className='mb-5'>
+                {partecipantiFiltrati && partecipantiFiltrati.map((partecipante) => {
+                    return (
+                        <PartecipanteCard
+                            key={`person-${partecipante.id}`}
+                            partecipante={partecipante}
+                        />
+                    )
+                })
+                }
+            </div>
         </>
     )
 }

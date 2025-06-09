@@ -10,7 +10,7 @@ const PartecipanteCard = ({ partecipante }) => {
                         type="button"
                         data-bs-toggle="collapse"
                         data-bs-target={`#collapse-${id}`}
-                        aria-expanded="false"
+                        aria-expanded="true"
                         aria-controls={`collapse-${id}`}
                     >
                         {nome} {cognome}
@@ -20,12 +20,22 @@ const PartecipanteCard = ({ partecipante }) => {
                     id={`collapse-${id}`}
                     className="accordion-collapse collapse"
                     aria-labelledby={`heading-${id}`}
+                    data-bs-parent="#accordion"
                 >
-                    <div className="info accordion-body">
+                    <div className="info accordion-body bg-main text-white rounded-bottom pb-1">
                         <ul className="ps-0">
-                            <li>Codice Fiscale: {codice_fiscale}</li>
-                            <li>Telefono: {telefono}</li>
-                            <li>Email: {email}</li>
+                            <li>
+                                <strong className="text-second">Codice Fiscale:</strong>
+                                <span> {codice_fiscale}</span>
+                            </li>
+                            <li>
+                                <strong className="text-second">Telefono:</strong>
+                                <span> {telefono}</span>
+                            </li>
+                            <li>
+                                <strong className="text-second">Email:</strong>
+                                <span> {email}</span>
+                            </li>
                         </ul>
                     </div>
                 </div>

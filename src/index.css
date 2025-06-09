@@ -29,5 +29,14 @@ ul {
 }
 
 .badge-red {
-  background-color: rgb(212, 76, 76);
+  background-color: rgb(213, 107, 235);
+}
+
+.nav-underline .nav-link.active,
+.nav-underline .nav-link:hover {
+  border-bottom-color: #00E165 !important;
+}
+
+.text-second {
+  color: #00E165;
 }
