@@ -1,3 +1,9 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
   background-color: gray !important;
 }
@@ -21,11 +27,15 @@ body {
   cursor: pointer;
 }
 
-.tripTitle {
-  text-align: right;
-  margin: 30px, 20px;
-}
-
 ul {
   list-style-type: none;
 }
+
+.link-trip {
+  text-decoration: none;
+  color: black;
+}
+
+/* .link-trip:hover{
+  text-decoration: underline;
+} */

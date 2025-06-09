@@ -1,60 +1,80 @@
-import React from 'react'
+import { useState, useContext, useEffect } from 'react'
+import { useParams, Link } from 'react-router-dom'
+import TripContext from '../contexts/TripContext'
+import PartecipanteCard from '../components/PartecipanteCard'
 
 const TripDetail = () => {
-  return (
-    <>
+    const { viaggi } = useContext(TripContext)
 
-            <h4 className='tripTitle'>Partecipanti alla gita a Como</h4>
-            <div className="input-group">
-                <div className="form-outline d-flex" >
-                    <input type="text" placeholder='Cerca partecipante...' className="form-control border border-2 border-primary rounded-0 rounded-start" />
-                    <button type="submit" className="btn btn-primary rounded-0 rounded-end">
-                        <i className="fas fa-search" /> Cerca
-                    </button>
-                </div>                
-            </div>
-            <hr />
-            <div className="accordion" id="accordionExample">
-                <div className="accordion-item">
-                    <h2 className="accordion-header">
-                    <button
-                        className="accordion-button"
-                        type="button"
-                        data-bs-toggle="collapse"
-                        data-bs-target="#collapseOne"
-                        aria-expanded="true"
-                        aria-controls="collapseOne"
-                    >
-                        Mario Rossi
-                    </button>
-                    </h2>
-                <div
-                    id="collapseOne"
-                    className="accordion-collapse collapse show"
-                    data-bs-parent="#accordionExample"
-                    >
-                        <div className="accordion-body">
-                            <ul>
-                                <li>Nome: {/*Nome*/}</li>
-                                <li>Cognome: {/*Cognome*/}</li>
-                                <li>Codice Fiscale: {/*Codice fiscale*/}</li> 
-                                <li>Telefono: {/*Numero di telefono*/}</li>
-                                <li>Email: {/*Email*/}</li>
-                                <li>Numero di emergenza: {/*Numero di emergenza*/}</li>    
-                            </ul>
-                        </div>
+    const { id } = useParams()
+
+    const [trip, setTrip] = useState({})
+
+    const [searchInput, setSearchInput] = useState("")
+
+    const [partecipantiFiltrati, setPartecipantiFiltrati] = useState([])
+
+    useEffect(() => {
+        const foundTrip = viaggi.find((viaggio) => (viaggio.id.toString() === id))
+
+        if (foundTrip) {
+            setTrip(foundTrip)
+            setPartecipantiFiltrati(foundTrip.partecipanti)
+        }
+    }, [])
+
+
+    const handleChange = (e) => {
+        e.preventDefault();
+        setSearchInput(e.target.value)
+    }
+
+    useEffect(() => {
+        if (trip.partecipanti) {
+            const filtered = trip.partecipanti.filter((partecipante) => {
+                const fullName = `${partecipante.nome} ${partecipante.cognome}`.toLowerCase()
+                return fullName.includes(searchInput.toLowerCase())
+            })
+            setPartecipantiFiltrati(filtered)
+        }
+    }, [searchInput, trip.partecipanti])
+
+
+    return (
+        <>
+            <div className="row gy-4 my-3">
+                <div className="col-12">
+                    <h4 className='tripTitle'>{`Partecipanti alla gita a ${trip.nome}`}</h4>
+                    <div className="form-group d-flex">
+                        <input
+                            type="text"
+                            className="form-control border border-2 border-primary rounded-0 rounded-start"
+                            placeholder="Cerca partecipante..."
+                            value={searchInput}
+                            onChange={handleChange}
+                        />
+                        <Link to={`/`}>
+                            <button
+                                className="btn btn-primary rounded-0 rounded-end"
+                                type="button"
+                            >Torna alla lista gite
+                            </button>
+                        </Link >
                     </div>
                 </div>
-                <button
-                type="button"
-                className="btn btn-primary btn-rounded"
-                data-mdb-ripple-init=""
-                >
-                    Torna alla lista gite
-                </button>
             </div>
-    </>
-  )
+            <hr />
+            {partecipantiFiltrati && partecipantiFiltrati.map((partecipante) => {
+                return (
+                    <PartecipanteCard
+                        key={`person-${partecipante.id}`}
+                        partecipante={partecipante}
+                    />
+                )
+            })
+            }
+        </>
+    )
 }
 
 export default TripDetail
