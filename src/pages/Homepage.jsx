@@ -1,13 +1,12 @@
-import { useContext, useState } from "react"
+import { useContext } from "react"
 import TripContext from "../contexts/TripContext"
 import TripCard from "../components/TripCard"
+import { NavLink } from "react-router-dom"
 
 
 const Homepage = () => {
 
-  const { viaggi } = useContext(TripContext)
-
-  const [tab, setTab] = useState(0)
+  const { viaggi, tab, setTab } = useContext(TripContext)
 
 
   return (
@@ -36,6 +35,13 @@ const Homepage = () => {
 
       <br />
 
+      <NavLink
+        to={'/viaggi/crea-viaggio'}
+        id="add-button"
+        className={`shadow`}
+      >
+        <i className="fa-solid fa-plus text-light fs-4"></i>
+      </NavLink>
 
       {viaggi.map((viaggio) => {
         const partenza = new Date(viaggio.data_partenza)

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 const TripCard = ({ viaggio }) => {
   const { id, nome, luogo, tipologia, color_tag, data_partenza, data_arrivo, accompagnatore, partecipanti } = viaggio;
 
+
   return (
     <Link className="link-trip" to={`/viaggi/${id}`}>
       <div className="col-12 mb-3">
