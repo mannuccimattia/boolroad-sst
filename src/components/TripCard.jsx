@@ -16,7 +16,7 @@ const TripCard = ({ viaggio }) => {
             <div className='mb-1'>Partecipanti: <b>{partecipanti.length}</b></div>
 
           </div>
-          <div className="card-footer py-3 bg-primary border-0">
+          <div className="card-footer py-3 bg-main border-0">
             <div className='text-center text-light'>Accompagnatore:</div>
             <div className='text-center text-light fw-bold'>{accompagnatore}</div>
           </div>

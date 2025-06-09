@@ -1,28 +1,15 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Outfit';
+body {
+  font-family: 'Outfit' !important;
 }
 
-/* body {
-  background-color: gray !important;
-} */
-
 .bg-main {
-  background-color: #023275;
+  background-color: #001632 !important;
 }
 
 #header-logo {
   width: 40px;
   aspect-ratio: 1/1;
 }
-
-/* .card {
-  -webkit-box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(0, 0, 0, 0);
-  box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(0, 0, 0, 0);
-  transition: 0.3s;
-} */
 
 .card:hover {
   cursor: pointer;
@@ -37,10 +24,6 @@ ul {
   color: black;
 }
 
-/* .link-trip:hover{
-  text-decoration: underline;
-} */
-
 .badge-green {
   background-color: rgb(59, 131, 59);
 }
@@ -48,7 +31,3 @@ ul {
 .badge-red {
   background-color: rgb(212, 76, 76);
 }
-
-/* .badge-orange {
-  background-color: rgb(245, 159, 60);
-} */
