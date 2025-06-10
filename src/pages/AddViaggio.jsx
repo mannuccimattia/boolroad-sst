@@ -161,7 +161,6 @@ const AddViaggio = () => {
                             id="tipologia"
                             name="tipologia"
                             className="form-select border-0 shadow py-2"
-                            aria-label="Default select example"
                             value={formData.tipologia}
                             onChange={setFieldValue}
                         >
