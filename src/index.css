@@ -45,6 +45,10 @@ ul {
   color: #00E165;
 }
 
+.bg-second {
+  background-color: #00E165 !important;
+}
+
 #add-button {
   position: fixed;
   z-index: 10;
