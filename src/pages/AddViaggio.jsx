@@ -30,7 +30,6 @@ const AddViaggio = () => {
 
     // function for storing form data
     const setFieldValue = (e) => {
-        console.log(e.target)
         const { value, name } = e.target;
         const update = { id: nextId, [name]: value };
 
