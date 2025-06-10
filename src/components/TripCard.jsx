@@ -3,6 +3,10 @@ import { Link } from 'react-router-dom'
 const TripCard = ({ viaggio }) => {
   const { id, nome, luogo, tipologia, color_tag, data_partenza, data_arrivo, accompagnatore, partecipanti } = viaggio;
 
+  const tipologiaDisplay = {
+    'wild': 'Avventure wild',
+    'guidate': 'Visite guidate'
+  };
 
   return (
     <Link className="link-trip" to={`/viaggi/${id}`}>
@@ -11,7 +15,9 @@ const TripCard = ({ viaggio }) => {
           <div className="card-body p-4">
             <h4 className="card-title">{nome}</h4>
             <div className="text-secondary mb-2">{luogo}</div>
-            <div className={`badge rounded-pill badge-${color_tag} px-3 mb-2 fw-medium`}>{tipologia}</div>
+            <div className={`badge rounded-pill badge-${color_tag} px-3 mb-2 fw-medium`}>
+              {tipologiaDisplay[tipologia] || tipologia}
+            </div>
             <div className='mb-1'>Partenza: <b>{data_partenza}</b></div>
             <div className='mb-1'>Rientro: <b>{data_arrivo}</b></div>
             <div className='mb-1'>Partecipanti: <b>{partecipanti.length}</b></div>

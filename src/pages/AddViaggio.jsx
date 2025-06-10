@@ -30,19 +30,15 @@ const AddViaggio = () => {
 
     // function for storing form data
     const setFieldValue = (e) => {
-
-        // format select value to fit css 
-        const { value: rawValue, name } = e.target;
-        let value = rawValue;
+        console.log(e.target)
+        const { value, name } = e.target;
         const update = { id: nextId, [name]: value };
 
         if (name === "tipologia") {
             if (value === "wild") {
-                value = "Avventure wild";
                 update[name] = value;
                 update.color_tag = "green";
             } else if (value === "guidate") {
-                value = "Visite guidate";
                 update[name] = value;
                 update.color_tag = "red";
             }
