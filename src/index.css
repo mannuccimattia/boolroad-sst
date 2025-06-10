@@ -1,5 +1,5 @@
 body {
-  font-family: 'Outfit' !important;
+  font-family: 'Outfit', sans-serif !important;
 }
 
 main {
@@ -78,6 +78,11 @@ ul {
 
 .text-orange {
   color: rgb(245, 159, 60);
+}
+
+label {
+  color: #001632;
+  font-weight: 600;
 }
 
 /* HIDE INPUT NUMBER SCROLLERS */

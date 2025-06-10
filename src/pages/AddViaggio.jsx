@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { useContext } from "react";
+import { useState, useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import TripContext from "../contexts/TripContext";
 
 
@@ -18,7 +18,10 @@ const AddViaggio = () => {
 
     const { viaggi } = useContext(TripContext);
 
-    const maxId = Math.max.apply(null, viaggi.map(item => item.id))
+    const navigate = useNavigate();
+
+    const nextId = viaggi.length > 0 ? Math.max(...viaggi.map(v => v.id)) + 1 : 1;
+
 
     // state variables
     const [formData, setFormData] = useState(initialData);
@@ -27,9 +30,29 @@ const AddViaggio = () => {
 
     // function for storing form data
     const setFieldValue = (e) => {
-        const { value, name } = e.target;
 
-        setFormData({ ...formData, [name]: value, id: maxId });
+        // format select value to fit css 
+        const { value: rawValue, name } = e.target;
+        let value = rawValue;
+        const update = { id: nextId, [name]: value };
+
+        if (name === "tipologia") {
+            if (value === "wild") {
+                value = "Avventure wild";
+                update[name] = value;
+                update.color_tag = "green";
+            } else if (value === "guidate") {
+                value = "Visite guidate";
+                update[name] = value;
+                update.color_tag = "red";
+            }
+        }
+
+        // store updated form data
+        setFormData({
+            ...formData,
+            ...update
+        });
     };
 
     // function for form data validation, returns true if all fields are correct
@@ -66,7 +89,7 @@ const AddViaggio = () => {
         return true;
     };
 
-    // function for submitting form data to db
+    // function for submitting form data
     const handleSubmit = (e) => {
         e.preventDefault();
 
@@ -76,14 +99,11 @@ const AddViaggio = () => {
             return;
         }
 
-        console.log(formData)
-
-        // // if valid, do ajax call for storing the review
-        // viaggi.push(formData).then(() => {
-        //     setIsFormValid(true);
-        //     setFormData(initialData);
-        //     console.log(viaggi);
-        // })
+        // if valid, push form data and reset form fields
+        viaggi.push(formData)
+        setIsFormValid(true);
+        setFormData(initialData);
+        navigate("/");
     }
 
     return (
@@ -91,9 +111,12 @@ const AddViaggio = () => {
             <h3 className="fw-bold mb-4">Aggiungi viaggio</h3>
 
             <form className="mb-3" onSubmit={handleSubmit}>
+                {!isFormValid && <div className="alert alert-danger border-danger mb-3">
+                    <strong>Form data not valid</strong>
+                </div>}
                 <div className="row gy-3">
                     <div className="col-12">
-                        <label htmlFor="name" className='control-label opaque-mid mb-1'>Nome</label>
+                        <label htmlFor="name" className='control-label mb-1'>Nome</label>
                         <input
                             id="nome"
                             name="nome"
@@ -105,7 +128,7 @@ const AddViaggio = () => {
                         />
                         {errorMessage.map(err => {
                             if (err.field === "nome") return (
-                                <span key={`${err.field}-key`} className="text-danger opaque-mid">
+                                <span key={`${err.field}-key`} className="text-danger">
                                     {err.message}
                                 </span>
                             )
@@ -113,7 +136,7 @@ const AddViaggio = () => {
                     </div>
 
                     <div className="col-12">
-                        <label htmlFor="name" className='control-label opaque-mid mb-1'>Luogo</label>
+                        <label htmlFor="name" className='control-label mb-1'>Luogo</label>
                         <input
                             id="luogo"
                             name="luogo"
@@ -125,7 +148,7 @@ const AddViaggio = () => {
                         />
                         {errorMessage.map(err => {
                             if (err.field === "luogo") return (
-                                <span key={`${err.field}-key`} className="text-danger opaque-mid">
+                                <span key={`${err.field}-key`} className="text-danger">
                                     {err.message}
                                 </span>
                             )
@@ -133,7 +156,7 @@ const AddViaggio = () => {
                     </div>
 
                     <div className="col-12">
-                        <label htmlFor="name" className='control-label opaque-mid mb-1'>Tipologia</label>
+                        <label htmlFor="name" className='control-label mb-1'>Tipologia</label>
                         <select
                             id="tipologia"
                             name="tipologia"
@@ -142,14 +165,13 @@ const AddViaggio = () => {
                             value={formData.tipologia}
                             onChange={setFieldValue}
                         >
-                            <option value="">Open this select menu</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
+                            <option value="">Scegli</option>
+                            <option value="wild">Avventure wild</option>
+                            <option value="guidate">Visite guidate</option>
                         </select>
                         {errorMessage.map(err => {
                             if (err.field === "tipologia") return (
-                                <span key={`${err.field}-key`} className="text-danger opaque-mid">
+                                <span key={`${err.field}-key`} className="text-danger">
                                     {err.message}
                                 </span>
                             )
@@ -157,7 +179,7 @@ const AddViaggio = () => {
                     </div>
 
                     <div className="col-12">
-                        <label htmlFor="name" className='control-label opaque-mid mb-1'>Data di Partenza</label>
+                        <label htmlFor="name" className='control-label mb-1'>Data di Partenza</label>
                         <input
                             id="data_partenza"
                             name="data_partenza"
@@ -168,7 +190,7 @@ const AddViaggio = () => {
                         />
                         {errorMessage.map(err => {
                             if (err.field === "data_partenza") return (
-                                <span key={`${err.field}-key`} className="text-danger opaque-mid">
+                                <span key={`${err.field}-key`} className="text-danger">
                                     {err.message}
                                 </span>
                             )
@@ -176,7 +198,7 @@ const AddViaggio = () => {
                     </div>
 
                     <div className="col-12">
-                        <label htmlFor="name" className='control-label opaque-mid mb-1'>Data di Rientro</label>
+                        <label htmlFor="name" className='control-label mb-1'>Data di Rientro</label>
                         <input
                             id="data_arrivo"
                             name="data_arrivo"
@@ -187,7 +209,7 @@ const AddViaggio = () => {
                         />
                         {errorMessage.map(err => {
                             if (err.field === "data_arrivo") return (
-                                <span key={`${err.field}-key`} className="text-danger opaque-mid">
+                                <span key={`${err.field}-key`} className="text-danger">
                                     {err.message}
                                 </span>
                             )
@@ -195,7 +217,7 @@ const AddViaggio = () => {
                     </div>
 
                     <div className="col-12">
-                        <label htmlFor="name" className='control-label opaque-mid mb-1'>Accompagnatore</label>
+                        <label htmlFor="name" className='control-label mb-1'>Accompagnatore</label>
                         <input
                             id="accompagnatore"
                             name="accompagnatore"
@@ -207,17 +229,23 @@ const AddViaggio = () => {
                         />
                         {errorMessage.map(err => {
                             if (err.field === "accompagnatore") return (
-                                <span key={`${err.field}-key`} className="text-danger opaque-mid">
+                                <span key={`${err.field}-key`} className="text-danger">
                                     {err.message}
                                 </span>
                             )
                         })}
                     </div>
 
-                    <button
-                        type='submit'
-                        className="btn bg-main text-white"
-                    >Aggiungi viaggio</button>
+                    <div className="col-12 d-flex justify-content-center mt-4 mb-2">
+                        <button
+                            type='submit'
+                            className="btn bg-main text-white"
+                        >Aggiungi viaggio</button>
+                        <button
+                            className="btn btn-danger ms-3"
+                            onClick={() => { navigate("/") }}
+                        >Annulla</button>
+                    </div>
                 </div>
             </form>
         </div>
